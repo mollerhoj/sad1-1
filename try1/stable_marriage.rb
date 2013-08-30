@@ -1,40 +1,29 @@
 def compute(men,women)
-  couples = [] 
 
   men.each do |m|
     woman = m.pref.first
 
-    couples << Couple.new(man:m,woman:woman) 
+    m.partner = woman
   end
 
-  print_couples couples
+  print_couples men
 end
 
-def print_couples(couples)
+def print_couples(men)
   txt = ""
-  couples.each do |c|
-    txt += c.to_s + "\n"
+  men.each do |m|
+    txt += print_couple m
   end
   txt
 end
 
-class Couple
-  attr_accessor :man
-  attr_accessor :woman
-
-  def to_s
-    @man.name + ' -- ' + @woman.name
-  end
-
-  def initialize args
-    args.each do |k,v|
-      instance_variable_set("@#{k}", v) unless v.nil?
-    end
-  end
+def print_couple(man)
+  man.name + ' -- ' + man.partner.name + "\n"
 end
 
 class Human
   attr_accessor :name
+  attr_accessor :partner
   attr_accessor :pref
 
   def prefer a, b
