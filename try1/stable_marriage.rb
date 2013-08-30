@@ -23,8 +23,14 @@ end
 
 class Human
   attr_accessor :name
-  attr_accessor :partner
   attr_accessor :pref
+  attr_accessor :partner
+
+  def marry p
+    if @partner then @partner.partner = nil end
+    @partner = p
+    p.partner = self
+  end
 
   def prefer a, b
     @pref.index(a) < @pref.index(b)
@@ -34,5 +40,6 @@ class Human
     args.each do |k,v|
       instance_variable_set("@#{k}", v) unless v.nil?
     end
+    @partner = nil
   end
 end

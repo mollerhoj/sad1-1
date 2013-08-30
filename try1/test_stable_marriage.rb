@@ -36,5 +36,18 @@ class TestStableMarriages < Test::Unit::TestCase
     men << Human.new(name: 'Ross', pref: [racheal,monica])
     assert_equal "Joey -- Monica\nRoss -- Racheal\n", compute(men,women)
   end
+
+  def test_monogamasy
+    joey = Human.new(name: 'Joey')
+    monica = Human.new(name: 'Monica')
+    racheal = Human.new(name: 'Racheal')
+
+    joey.marry monica
+    joey.marry racheal
+
+    assert_equal racheal , joey.partner
+    assert_equal joey , racheal.partner
+    assert_equal nil , monica.partner
+  end
 end
 
