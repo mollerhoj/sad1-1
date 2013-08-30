@@ -1,10 +1,12 @@
 def compute(men,women)
   couples = [] 
+
   men.each do |m|
     woman = m.pref.first
 
     couples << Couple.new(man:m,woman:woman) 
   end
+
   print_couples couples
 end
 
