@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 require "test/unit"
-require "../match_reader"
+require_relative "../match_reader"
 
 class TestMatchReader < Test::Unit::TestCase
 

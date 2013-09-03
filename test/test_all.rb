@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 require "test/unit"
-require "./test_human"
-require "./test_stable_marriage"
-require "./test_match_reader"
-require "./test_integreation"
+require_relative "test_human.rb"
+require_relative "test_stable_marriage.rb"
+require_relative "test_match_reader.rb"
+require_relative "test_integreation.rb"

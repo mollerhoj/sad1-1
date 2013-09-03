@@ -1,5 +1,5 @@
 require "test/unit"
-require "../stable_marriage"
+require_relative "../stable_marriage"
 
 class TestHuman < Test::Unit::TestCase
 

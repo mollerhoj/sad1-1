@@ -10,10 +10,6 @@ class Cupid
     end
   end
 
-  def find_free_man men
-    men.find {|m| m.partner == nil}
-  end
-
   def print_couples(men)
     return print_couple(men.shift)+print_couples(men) if !men.empty?
     ""
@@ -22,6 +18,11 @@ class Cupid
   def print_couple(man)
     return man.name + ' -- ' + man.partner.name + "\n" if man
     ""
+  end
+
+  private
+  def find_free_man men
+    men.find {|m| m.partner == nil}
   end
 end
 

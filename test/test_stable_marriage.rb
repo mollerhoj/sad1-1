@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 
 require "test/unit"
-require "../stable_marriage"
+require_relative "../stable_marriage"
 
 class TestStableMarriages < Test::Unit::TestCase
 

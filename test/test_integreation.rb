@@ -1,8 +1,8 @@
 #!/usr/bin/ruby -w
 
 require "test/unit"
-require "../match_reader"
-require "../stable_marriage"
+require_relative "../match_reader"
+require_relative "../stable_marriage"
 
 class TestIntegration < Test::Unit::TestCase
   def setup
