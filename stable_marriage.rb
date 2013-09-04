@@ -3,29 +3,28 @@ class Cupid
     @i = 0
     @tA = 0
     @tB = 0
+    @free_men = []
   end
 
   # Used to be beautiful recursion. But many Ruby implementations
   # (including mine) does not have tail call optimization
   def match men
+    @free_men = men.dup
     while(true)
-      @i += 1
-      @t1 = Time.now
-      man = find_free_man(men)
-      @t2 = Time.now
-      @tA += @t2 - @t1
+      man = @free_men.first 
       if man
         woman = man.pref.shift
+        k = woman.prefer man
         if woman.prefer man
-          @t1 = Time.now
+          if woman.partner
+            @free_men << woman.partner
+          end
           man.marry woman
-          @t2 = Time.now
-          @tB += @t2 - @t1
+          @free_men.shift
         end
       else
         break
       end
-      puts @tB - @tA
     end
   end
 
@@ -66,10 +65,20 @@ class Human
   end
 
   def prefer p
-    if @partner and @pref.index(p) and @pref.index(@partner)
-      @pref.index(p) < @pref.index(@partner)
-    else
-      true
+    if p.pref.kind_of?(Array)
+      if @partner and @pref.index(p) and @pref.index(@partner)
+        @pref.index(p) < @pref.index(@partner)
+      else
+        true
+      end
+    elsif p.pref.kind_of?(Hash)
+      if @partner and @pref[p] and @pref[@partner]
+        @pref[p].to_i < @pref[@partner].to_i
+      else
+        true
+      end
+    elsif
+      throw 'No such type:' + p.kindof
     end
   end
 

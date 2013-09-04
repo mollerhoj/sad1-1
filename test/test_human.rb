@@ -1,3 +1,5 @@
+#!/usr/bin/ruby -w
+
 require "test/unit"
 require_relative "../stable_marriage"
 
@@ -16,7 +18,7 @@ class TestHuman < Test::Unit::TestCase
   end
 
   def test_woman_prefer
-    @monica.pref = [@joey,@chandler,@ross]
+    @monica.pref = {@joey => 1,@chandler => 2,@ross => 3}
     @monica.marry @chandler
     assert_equal false , @monica.prefer(@ross)
     assert_equal false , @monica.prefer(@chandler)

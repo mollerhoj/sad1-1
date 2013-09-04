@@ -6,18 +6,19 @@ require_relative "../stable_marriage"
 
 class TestIntegration < Test::Unit::TestCase
   def setup
-    @monica = Human.new('Monica')
-    @rachel = Human.new('Rachel')
-    @phoebe = Human.new('Phoebe')
-    @joey = Human.new('Joey', [@rachel,@phoebe,@monica,])
-    @ross = Human.new('Ross', [@rachel,@phoebe,@monica])
-    @chandler = Human.new('Chandler', [@monica,@rachel,@phoebe])
-    @monica.pref = [@chandler,@joey,@ross]
-    @rachel.pref = [@ross,@joey,@chandler]
-    @phoebe.pref = [@joey,@ross,@chandler]
 
-    @reader = MatchReader.new
+    @monica = Human.new('Monica')
+    @racheal = Human.new('Racheal')
+    @phoebe = Human.new('Phoebe')
+    @joey = Human.new('Joey', [@racheal,@phoebe,@monica,])
+    @ross = Human.new('Ross', [@racheal,@phoebe,@monica])
+    @chandler = Human.new('Chandler', [@monica,@racheal,@phoebe])
+    @monica.pref = {@chandler => 1,@joey => 2,@ross => 3}
+    @racheal.pref = {@ross => 1,@joey => 2,@chandler => 3}
+    @phoebe.pref = {@joey => 1,@ross => 2,@chandler => 3}
+
     @cupid = Cupid.new
+    @reader = MatchReader.new
   end
 
   def test_friends
