@@ -1,12 +1,31 @@
 class Cupid
+  def initialize
+    @i = 0
+    @tA = 0
+    @tB = 0
+  end
+
+  # Used to be beautiful recursion. But many Ruby implementations
+  # (including mine) does not have tail call optimization
   def match men
-    man = find_free_man(men)
-    if man
-      woman = man.pref.shift
-      if woman.prefer man
-        man.marry woman
+    while(true)
+      @i += 1
+      @t1 = Time.now
+      man = find_free_man(men)
+      @t2 = Time.now
+      @tA += @t2 - @t1
+      if man
+        woman = man.pref.shift
+        if woman.prefer man
+          @t1 = Time.now
+          man.marry woman
+          @t2 = Time.now
+          @tB += @t2 - @t1
+        end
+      else
+        break
       end
-      match men
+      puts @tB - @tA
     end
   end
 

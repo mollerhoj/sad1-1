@@ -44,18 +44,34 @@ class TestIntegration < Test::Unit::TestCase
     check f_in, f_out
   end
 
+  def test_50_worst
+    f_in =  'input/stable-marriage-worst-50.in' 
+    f_out = 'input/stable-marriage-worst-50.out' 
+    check f_in, f_out
+  end
+
   def test_500_random
     f_in =  'input/stable-marriage-random-500.in' 
     f_out = 'input/stable-marriage-random-500.out' 
-    #check f_in, f_out
+    check f_in, f_out
+  end
+
+  def test_500_worst
+    f_in =  'input/stable-marriage-worst-500.in' 
+    f_out = 'input/stable-marriage-worst-500.out' 
+    check f_in, f_out
+  end
+
+  def test_5000_worst
+    f_in =  'input/stable-marriage-worst-5000.in' 
+    f_out = 'input/stable-marriage-worst-5000.out' 
+    check f_in, f_out
   end
 
   def check f_in,f_out
     @reader.read(f_in)
+    puts 'Reading done!'
     @cupid.match @reader.men
     assert_equal File.open(f_out).read, @cupid.print_couples(@reader.men)
   end
-
-
-
 end
